@@ -1,0 +1,6 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <rect width="24" height="24" rx="3" fill="#336791"/>
+  <path d="M8 7 C8 5 10 4 12 4 C14 4 16 5 16 7 L16 17 C16 19 14 20 12 20 C10 20 8 19 8 17 Z" fill="none" stroke="white" stroke-width="2"/>
+  <circle cx="12" cy="7" r="3" fill="white"/>
+  <text x="50%" y="52%" text-anchor="middle" dy=".35em" fill="#336791" font-size="5" font-weight="900" font-family="sans-serif">P</text>
+</svg>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Devis GIRA C&E — Plateforme UNPC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Source Sans 3',sans-serif;background:#f5f5f5;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+@page{size:A4;margin:0;}
+@media print{body{background:#fff;}.P{page-break-after:always;break-after:page;page-break-inside:avoid;}.COV{page-break-after:always !important;}}
+
+.P{width:210mm;height:297mm;background:#fff;margin:5mm auto;box-shadow:0 2mm 8mm rgba(0,0,0,.1);position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.PC{flex:1;padding:25mm 28mm 20mm 28mm;display:flex;flex-direction:column;}
+.PH{height:12mm;background:linear-gradient(135deg,#1E3A8A 0%,#3B82F6 100%);display:flex;justify-content:space-between;align-items:center;padding:0 28mm;font:400 7.5pt/1 'Source Sans 3',sans-serif;color:#fff;}
+.PF{height:10mm;background:#F8FAFC;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;padding:0 28mm;font:400 7pt/1 'Source Sans 3',sans-serif;color:#64748B;}
+.pn{display:inline-block;width:15mm;text-align:right;}
+
+/* PAGE DE GARDE */
+.COV{background:linear-gradient(135deg,#1E3A8A 0%,#1E40AF 50%,#3B82F6 100%);}
+.cvT,.cvB,.cvL{position:absolute;background:rgba(255,255,255,.03);}
+.cvT{top:0;left:0;right:0;height:35mm;}
+.cvB{bottom:0;left:0;right:0;height:45mm;}
+.cvL{top:35mm;bottom:45mm;left:0;width:8mm;}
+.cv-corner-tl,.cv-corner-br{position:absolute;width:25mm;height:25mm;border:2px solid rgba(255,255,255,.1);}
+.cv-corner-tl{top:15mm;left:15mm;border-right:none;border-bottom:none;}
+.cv-corner-br{bottom:15mm;right:15mm;border-left:none;border-top:none;}
+.cv-head{position:absolute;top:22mm;left:28mm;right:28mm;display:flex;justify-content:space-between;align-items:flex-start;}
+.cv-logo{font:900 34pt/1 'Source Sans 3',sans-serif;color:#fff;letter-spacing:3px;}
+.cv-logo i{font-style:normal;font-weight:300;font-size:20pt;color:rgba(255,255,255,.25);margin-left:4px;}
+.cv-logsub{font:700 7pt/1 'Source Sans 3',sans-serif;letter-spacing:6px;color:rgba(255,255,255,.15);text-transform:uppercase;margin-top:3mm;}
+.cv-ref{text-align:right;font:400 7.5pt/2.2 'Source Sans 3',sans-serif;color:rgba(255,255,255,.95);}
+.cv-mid{position:absolute;top:50%;left:28mm;right:28mm;transform:translateY(-50%);}
+.cv-bar{width:25mm;height:3px;background:#fff;margin-bottom:8mm;}
+.cv-tag{font:700 9pt/1.4 'Source Sans 3',sans-serif;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:6mm;}
+.cv-h1{font:900 38pt/1.15 'Sora',sans-serif;color:#fff;margin-bottom:6mm;}
+.cv-h1 em{font-style:normal;color:#60A5FA;}
+.cv-sub{font:400 13pt/1.6 'Source Sans 3',sans-serif;color:rgba(255,255,255,.75);}
+.cv-bot{position:absolute;bottom:22mm;left:28mm;right:28mm;display:flex;justify-content:space-between;align-items:flex-end;}
+.cv-price{font:900 42pt/1 'Sora',sans-serif;color:#FCD34D;}
+.cv-price-label{font:400 9pt/1.4 'Source Sans 3',sans-serif;color:rgba(255,255,255,.6);margin-bottom:2mm;}
+.cv-valid{text-align:right;font:400 9pt/1.6 'Source Sans 3',sans-serif;color:rgba(255,255,255,.7);}
+
+/* TYPOGRAPHIE */
+h2{font:700 20pt/1.3 'Sora',sans-serif;color:#1E3A8A;margin:0 0 6mm 0;}
+h3{font:600 13pt/1.4 'Sora',sans-serif;color:#1E40AF;margin:6mm 0 3mm 0;}
+p{font:400 10.5pt/1.8 'Source Sans 3',sans-serif;color:#334155;margin:0 0 3mm 0;}
+.srul{width:35mm;height:2.5px;background:linear-gradient(90deg,#3B82F6,transparent);margin-bottom:6mm;}
+
+/* TABLEAUX */
+.tbl{width:100%;border-collapse:collapse;margin:4mm 0 6mm 0;font:400 9.5pt/1.6 'Source Sans 3',sans-serif;}
+.tbl thead{background:#EEF2FF;border-bottom:2px solid #3B82F6;}
+.tbl th{text-align:left;padding:3mm 4mm;font:700 9pt/1.4 'Source Sans 3',sans-serif;color:#1E3A8A;text-transform:uppercase;letter-spacing:0.5px;}
+.tbl td{padding:3mm 4mm;border-bottom:1px solid #E2E8F0;color:#475569;}
+.tbl tbody tr:hover{background:#F8FAFC;}
+.tbl-total{background:#fff !important;color:#1E3A8A !important;font-weight:700 !important;font-size:11pt !important;border-top:2px solid #1E3A8A !important;}
+
+/* BOXES */
+.box{background:#F8FAFC;border:1px solid #E2E8F0;padding:4mm 5mm;margin:4mm 0;border-radius:2mm;}
+.box-warn{background:#F8FAFC;border:1px solid #E2E8F0;}
+.box-success{background:#F8FAFC;border:1px solid #E2E8F0;}
+
+/* LISTES */
+ul{margin:3mm 0 3mm 5mm;}
+li{font:400 10pt/1.8 'Source Sans 3',sans-serif;color:#475569;margin-bottom:1.5mm;}
+
+.phase-tag{display:inline-block;background:#3B82F6;color:#fff;padding:1mm 3mm;border-radius:1.5mm;font:700 8pt/1.4 'Source Sans 3',sans-serif;letter-spacing:0.5px;margin-right:2mm;}
+.phase-tag-v2{background:#8B5CF6;}
+.phase-tag-v3{background:#EC4899;}
+
+.total-section{background:linear-gradient(135deg,#1E3A8A,#3B82F6);color:#fff;padding:6mm;border-radius:3mm;margin-top:6mm;}
+.total-line{display:flex;justify-content:space-between;align-items:center;padding:2mm 0;border-bottom:1px solid rgba(255,255,255,.2);}
+.total-line:last-child{border-bottom:none;padding-top:3mm;font-size:14pt;font-weight:900;}
+.total-label{font:400 10pt/1.4 'Source Sans 3',sans-serif;}
+.total-price{font:700 12pt/1.4 'Sora',sans-serif;}
+.total-final-label{font:700 12pt/1.4 'Sora',sans-serif;}
+.total-final-price{font:900 24pt/1.4 'Sora',sans-serif;color:#FCD34D;}
+
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COUVERTURE DEVIS MINIMALISTE -->
+<div class="P COV"><div class="PC" style="justify-content:center;align-items:center;">
+  <div style="text-align:center;max-width:150mm;">
+    <div style="margin-bottom:15mm;">
+      <div class="cv-logo" style="font-size:28pt;">GIRA<i style="font-size:16pt;">C&E</i></div>
+      <div class="cv-logsub" style="margin-top:2mm;">Consulting & Engineering</div>
+    </div>
+
+    <div style="width:60mm;height:2px;background:rgba(255,255,255,0.3);margin:12mm auto;"></div>
+
+    <h1 style="font:300 32pt/1.3 'Sora',sans-serif;color:#fff;margin-bottom:3mm;">DEVIS</h1>
+    <p style="font:400 14pt/1.8 'Source Sans 3',sans-serif;color:rgba(255,255,255,0.85);margin-bottom:15mm;">
+      Plateforme Numérique UNPC
+    </p>
+
+    <div style="background:rgba(255,255,255,0.08);border-radius:3mm;padding:8mm;text-align:left;margin:0 auto;max-width:120mm;">
+      <table style="width:100%;font:400 10.5pt/2 'Source Sans 3',sans-serif;color:rgba(255,255,255,0.9);">
+        <tr>
+          <td style="color:rgba(255,255,255,0.6);width:40%;">Maître d'ouvrage</td>
+          <td style="font-weight:600;">GIRA C&E</td>
+        </tr>
+        <tr>
+          <td style="color:rgba(255,255,255,0.6);">Client</td>
+          <td style="font-weight:600;">UNPC</td>
+        </tr>
+        <tr>
+          <td style="color:rgba(255,255,255,0.6);">Durée</td>
+          <td style="font-weight:600;">24 semaines (6 mois)</td>
+        </tr>
+        <tr>
+          <td style="color:rgba(255,255,255,0.6);">Date</td>
+          <td style="font-weight:600;">14 Février 2026</td>
+        </tr>
+        <tr>
+          <td style="color:rgba(255,255,255,0.6);">Référence</td>
+          <td style="font-weight:600;">GIRA/2026/DEV-UNPC-001</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div></div>
+
+<!-- PAGE 2 — RÉCAPITULATIF PROJET -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h2>Récapitulatif du Projet</h2>
+  <div class="srul"></div>
+
+  <h3>Objectif du Projet</h3>
+  <p>Conception et développement d'une plateforme numérique complète pour l'Union Nationale du Patronat Centrafricain (UNPC), incluant site vitrine, espace membre, e-commerce, LMS et tableaux de bord analytics.</p>
+
+  <h3>Livrables Principaux</h3>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:20%">Phase</th>
+        <th style="width:15%">Durée</th>
+        <th>Livrables</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="phase-tag">V1 VITRINE</span></td>
+        <td>10 semaines</td>
+        <td>Site public institutionnel, pages statiques, actualités, formulaires</td>
+      </tr>
+      <tr>
+        <td><span class="phase-tag phase-tag-v2">V2 MEMBRES</span></td>
+        <td>8 semaines</td>
+        <td>Espace membre, annuaire, e-commerce, paiement cotisations, LMS</td>
+      </tr>
+      <tr>
+        <td><span class="phase-tag phase-tag-v3">V3 PLATEFORME</span></td>
+        <td>6 semaines</td>
+        <td>Dashboard analytics, API, bourse B2B, guichet i-COMPETE</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Technologies Proposées</h3>
+  <div class="box">
+    <p><strong>Option A (Recommandée) :</strong> WordPress 6.x + BuddyBoss + WooCommerce + LearnDash</p>
+    <p style="margin-bottom:0;"><strong>Option B (Alternative) :</strong> Next.js + Strapi + PostgreSQL + Redis</p>
+  </div>
+
+  <div class="box box-success">
+    <p style="margin-bottom:0;"><strong>✓ Garanties incluses :</strong> Code source fourni • 30 jours support post-livraison • 3 sessions formation • Documentation complète • Certificat SSL • Backups automatiques</p>
+  </div>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">2</span></span></div></div>
+
+<!-- PAGE 3 — DÉTAIL PHASE V1 -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h2><span class="phase-tag">PHASE V1</span> Site Vitrine Institutionnel</h2>
+  <div class="srul"></div>
+
+  <h3>Prestations Incluses</h3>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:50%">Prestation</th>
+        <th style="width:12%">Qté</th>
+        <th style="width:14%">P.U. HT</th>
+        <th style="width:12%">Total HT</th>
+        <th style="width:12%">Total TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Cadrage et audit de l'existant</strong></td>
+        <td>2 jours</td>
+        <td>2 917</td>
+        <td style="text-align:right;">5 834</td>
+        <td style="text-align:right;">7 000</td>
+      </tr>
+      <tr>
+        <td><strong>Maquettes UX/UI professionnelles</strong><br>Page d'accueil, templates pages internes, responsive</td>
+        <td>8 pages</td>
+        <td>1 042</td>
+        <td style="text-align:right;">8 334</td>
+        <td style="text-align:right;">10 000</td>
+      </tr>
+      <tr>
+        <td><strong>Développement front-end</strong><br>Intégration HTML/CSS/JS, animations, responsive</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">6 667</td>
+        <td style="text-align:right;">8 000</td>
+      </tr>
+      <tr>
+        <td><strong>Installation & configuration WordPress</strong><br>Thème personnalisé, plugins essentiels, sécurité</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">4 167</td>
+        <td style="text-align:right;">5 000</td>
+      </tr>
+      <tr>
+        <td><strong>Pages statiques (8 pages)</strong><br>Accueil, À propos, Missions, Organes, Services, Actualités, Contact</td>
+        <td>8 pages</td>
+        <td>667</td>
+        <td style="text-align:right;">5 334</td>
+        <td style="text-align:right;">6 400</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">3</span></span></div></div>
+
+<!-- PAGE 4 — DÉTAIL PHASE V1 (suite) -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h3>Prestations Incluses (suite)</h3>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:50%">Prestation</th>
+        <th style="width:12%">Qté</th>
+        <th style="width:14%">P.U. HT</th>
+        <th style="width:12%">Total HT</th>
+        <th style="width:12%">Total TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Module actualités & blog</strong><br>Système de publication, catégories, tags, recherche</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">2 917</td>
+        <td style="text-align:right;">3 500</td>
+      </tr>
+      <tr>
+        <td><strong>Formulaires de contact avancés</strong><br>GravityForms, validation, anti-spam, notifications</td>
+        <td>3 forms</td>
+        <td>667</td>
+        <td style="text-align:right;">2 000</td>
+        <td style="text-align:right;">2 400</td>
+      </tr>
+      <tr>
+        <td><strong>Optimisation SEO & performances</strong><br>Meta tags, sitemap, cache, compression images</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">2 084</td>
+        <td style="text-align:right;">2 500</td>
+      </tr>
+      <tr>
+        <td><strong>Tests & mise en staging</strong></td>
+        <td>3 jours</td>
+        <td>1 667</td>
+        <td style="text-align:right;">5 000</td>
+        <td style="text-align:right;">6 000</td>
+      </tr>
+      <tr style="background:#F1F5F9;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;font-weight:600;">SOUS-TOTAL V1 HT</td>
+        <td style="text-align:right;font-weight:700;">42 337 DHS</td>
+        <td style="text-align:right;"></td>
+      </tr>
+      <tr style="background:#F1F5F9;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;font-weight:600;">TVA 20%</td>
+        <td style="text-align:right;font-weight:700;">8 467 DHS</td>
+        <td style="text-align:right;"></td>
+      </tr>
+      <tr style="background:#EEF2FF;font-weight:700;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;">TOTAL V1 TTC</td>
+        <td style="text-align:right;"></td>
+        <td style="text-align:right;color:#1E3A8A;font-size:11pt;">50 800 DHS</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">4</span></span></div></div>
+
+<!-- PAGE 5 — DÉTAIL PHASE V2 -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h2><span class="phase-tag phase-tag-v2">PHASE V2</span> Espace Membre & E-commerce</h2>
+  <div class="srul"></div>
+
+  <h3>Prestations Incluses</h3>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:50%">Prestation</th>
+        <th style="width:12%">Qté</th>
+        <th style="width:14%">P.U. HT</th>
+        <th style="width:12%">Total HT</th>
+        <th style="width:12%">Total TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>BuddyBoss — Espace membre complet</strong><br>Profils, groupes privés, messagerie, timeline sociale</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">7 084</td>
+        <td style="text-align:right;">8 500</td>
+      </tr>
+      <tr>
+        <td><strong>Annuaire membres filtrable</strong><br>Recherche multicritères, exports, badges de confiance</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">3 334</td>
+        <td style="text-align:right;">4 000</td>
+      </tr>
+      <tr>
+        <td><strong>WooCommerce — E-commerce</strong><br>Boutique, produits, panier, paiement en ligne</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">5 000</td>
+        <td style="text-align:right;">6 000</td>
+      </tr>
+      <tr>
+        <td><strong>Paiement cotisations membres</strong><br>Gateway Orange Money/Mobile Money, facturation auto</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">4 584</td>
+        <td style="text-align:right;">5 500</td>
+      </tr>
+      <tr>
+        <td><strong>LearnDash — LMS E-learning</strong><br>Parcours formation, quiz, certificats, suivi progression</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">5 834</td>
+        <td style="text-align:right;">7 000</td>
+      </tr>
+      <tr>
+        <td><strong>Système de gestion documents</strong><br>Médiathèque, PDF filtrables, téléchargements sécurisés</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">2 500</td>
+        <td style="text-align:right;">3 000</td>
+      </tr>
+      <tr>
+        <td><strong>Tests utilisateurs & corrections</strong></td>
+        <td>3 jours</td>
+        <td>1 667</td>
+        <td style="text-align:right;">5 000</td>
+        <td style="text-align:right;">6 000</td>
+      </tr>
+      <tr style="background:#F1F5F9;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;font-weight:600;">SOUS-TOTAL V2 HT</td>
+        <td style="text-align:right;font-weight:700;">33 336 DHS</td>
+        <td style="text-align:right;"></td>
+      </tr>
+      <tr style="background:#F1F5F9;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;font-weight:600;">TVA 20%</td>
+        <td style="text-align:right;font-weight:700;">6 664 DHS</td>
+        <td style="text-align:right;"></td>
+      </tr>
+      <tr style="background:#EEF2FF;font-weight:700;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;">TOTAL V2 TTC</td>
+        <td style="text-align:right;"></td>
+        <td style="text-align:right;color:#1E3A8A;font-size:11pt;">40 000 DHS</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">5</span></span></div></div>
+
+<!-- PAGE 5 — DÉTAIL PHASE V3 & SERVICES -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h2><span class="phase-tag phase-tag-v3">PHASE V3</span> Plateforme Analytics & API</h2>
+  <div class="srul"></div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:50%">Prestation</th>
+        <th style="width:12%">Qté</th>
+        <th style="width:14%">P.U. HT</th>
+        <th style="width:12%">Total HT</th>
+        <th style="width:12%">Total TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Dashboard analytics personnalisé</strong><br>Métriques temps réel, rapports, visualisations</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">4 167</td>
+        <td style="text-align:right;">5 000</td>
+      </tr>
+      <tr>
+        <td><strong>API REST sécurisée</strong><br>Endpoints documentés, authentification, webhooks</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">3 334</td>
+        <td style="text-align:right;">4 000</td>
+      </tr>
+      <tr>
+        <td><strong>Bourse annonces B2B</strong><br>Matching sécurisé, modération, notifications</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">2 917</td>
+        <td style="text-align:right;">3 500</td>
+      </tr>
+      <tr>
+        <td><strong>Guichet i-COMPETE</strong><br>Éligibilité, TDR, appels d'offres, suivi dossiers</td>
+        <td>Forfait</td>
+        <td>--</td>
+        <td style="text-align:right;">3 084</td>
+        <td style="text-align:right;">3 700</td>
+      </tr>
+      <tr style="background:#F1F5F9;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;font-weight:600;">SOUS-TOTAL V3 HT</td>
+        <td style="text-align:right;font-weight:700;">13 502 DHS</td>
+        <td style="text-align:right;"></td>
+      </tr>
+      <tr style="background:#F1F5F9;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;font-weight:600;">TVA 20%</td>
+        <td style="text-align:right;font-weight:700;">2 698 DHS</td>
+        <td style="text-align:right;"></td>
+      </tr>
+      <tr style="background:#EEF2FF;font-weight:700;">
+        <td colspan="3" style="text-align:right;padding-right:8mm;">TOTAL V3 TTC</td>
+        <td style="text-align:right;"></td>
+        <td style="text-align:right;color:#1E3A8A;font-size:11pt;">16 200 DHS</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:8mm;">Services Complémentaires Inclus</h3>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:65%">Service</th>
+        <th style="width:35%">Valeur (DHS)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Formation complète (3 sessions × 2h)</strong><br>Administrateur, éditeur, maintenance</td>
+        <td style="text-align:right;">Inclus</td>
+      </tr>
+      <tr>
+        <td><strong>Documentation technique & utilisateur</strong><br>Guides PDF + vidéos tutorielles (10-15 vidéos)</td>
+        <td style="text-align:right;">Inclus</td>
+      </tr>
+      <tr>
+        <td><strong>Support post-livraison (30 jours)</strong><br>Email + visio, corrections bugs mineurs</td>
+        <td style="text-align:right;">Inclus</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">6</span></span></div></div>
+
+<!-- PAGE 6 — SERVICES SUITE -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h3>Services Complémentaires Inclus (suite)</h3>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:65%">Service</th>
+        <th style="width:35%">Valeur (DHS)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Hébergement & nom de domaine (1ère année)</strong></td>
+        <td style="text-align:right;">Inclus</td>
+      </tr>
+      <tr>
+        <td><strong>Certificat SSL & sécurité</strong></td>
+        <td style="text-align:right;">Inclus</td>
+      </tr>
+      <tr>
+        <td><strong>Maintenance & mises à jour (1 an)</strong><br>Correctifs sécurité, updates plugins, backups quotidiens</td>
+        <td style="text-align:right;">1 an inclus</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">7</span></span></div></div>
+
+<!-- PAGE 7 — RÉCAPITULATIF FINANCIER -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h2>Récapitulatif Financier</h2>
+  <div class="srul"></div>
+
+  <table class="tbl" style="margin-bottom:6mm;">
+    <thead>
+      <tr>
+        <th style="width:50%">Phase</th>
+        <th style="width:18%">Montant HT</th>
+        <th style="width:14%">TVA 20%</th>
+        <th style="width:18%">Total TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Phase V1</strong> — Site Vitrine Institutionnel</td>
+        <td style="text-align:right;">42 337 DHS</td>
+        <td style="text-align:right;">8 467 DHS</td>
+        <td style="text-align:right;font-weight:700;">50 800 DHS</td>
+      </tr>
+      <tr>
+        <td><strong>Phase V2</strong> — Espace Membre & E-commerce</td>
+        <td style="text-align:right;">33 336 DHS</td>
+        <td style="text-align:right;">6 664 DHS</td>
+        <td style="text-align:right;font-weight:700;">40 000 DHS</td>
+      </tr>
+      <tr>
+        <td><strong>Phase V3</strong> — Plateforme Analytics & API</td>
+        <td style="text-align:right;">13 502 DHS</td>
+        <td style="text-align:right;">2 698 DHS</td>
+        <td style="text-align:right;font-weight:700;">16 200 DHS</td>
+      </tr>
+      <tr style="background:#F1F5F9;font-weight:700;">
+        <td style="text-align:right;padding-right:8mm;">TOTAL GÉNÉRAL</td>
+        <td style="text-align:right;font-size:11pt;color:#1E3A8A;">89 175 DHS</td>
+        <td style="text-align:right;font-size:11pt;color:#1E3A8A;">17 829 DHS</td>
+        <td style="text-align:right;"></td>
+      </tr>
+      <tr class="tbl-total">
+        <td colspan="3" style="text-align:right;padding-right:8mm;font-size:12pt;">MONTANT TOTAL TTC</td>
+        <td style="text-align:right;font-size:14pt;">107 000 DHS</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:8mm;">Modalités de Paiement</h3>
+  <div class="box">
+    <ul style="margin:0;">
+      <li><strong>30% à la signature</strong> — 32 100 DHS TTC (lancement projet + V1)</li>
+      <li><strong>40% à la livraison V2</strong> — 42 800 DHS TTC (mi-parcours)</li>
+      <li><strong>30% à la livraison finale V3</strong> — 32 100 DHS TTC (mise en production)</li>
+    </ul>
+  </div>
+
+  <div class="box box-warn" style="margin-top:4mm;">
+    <p style="margin-bottom:0;"><strong>TVA :</strong> GIRA C&E est assujettie à la TVA au taux normal de 20% conformément à la législation marocaine en vigueur.</p>
+  </div>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">8</span></span></div></div>
+
+<!-- PAGE 8 — PLANNING PRÉVISIONNEL -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h2>Planning Prévisionnel</h2>
+  <div class="srul"></div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:25%">Phase</th>
+        <th style="width:20%">Durée</th>
+        <th style="width:30%">Jalons</th>
+        <th style="width:25%">Paiement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="phase-tag">V1 VITRINE</span></td>
+        <td>Sem. 1-10</td>
+        <td>Site public fonctionnel</td>
+        <td>30% au démarrage</td>
+      </tr>
+      <tr>
+        <td><span class="phase-tag phase-tag-v2">V2 MEMBRES</span></td>
+        <td>Sem. 11-18</td>
+        <td>Espace membre complet</td>
+        <td>40% à livraison V2</td>
+      </tr>
+      <tr>
+        <td><span class="phase-tag phase-tag-v3">V3 PLATEFORME</span></td>
+        <td>Sem. 19-24</td>
+        <td>Dashboard + API</td>
+        <td>30% à livraison V3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-warn">
+    <p style="margin-bottom:0;"><strong>⚠️ Validité du devis :</strong> 60 jours à compter de la date d'émission. Le planning démarre dès réception du premier acompte et signature du bon de commande.</p>
+  </div>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">9</span></span></div></div>
+
+<!-- PAGE 9 — CONDITIONS GÉNÉRALES (1/2) -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h2>Conditions Générales</h2>
+  <div class="srul"></div>
+
+  <h3>Prestations Incluses</h3>
+  <ul>
+    <li>Conception graphique et maquettes UX/UI professionnelles</li>
+    <li>Développement front-end et back-end selon option choisie</li>
+    <li>Installation, configuration et personnalisation de tous les plugins</li>
+    <li>Intégration complète des contenus fournis par le client</li>
+    <li>Tests fonctionnels, compatibilité navigateurs et responsive</li>
+    <li>Optimisation SEO et performances (PageSpeed > 85)</li>
+    <li>Certificat SSL et configuration sécurité</li>
+    <li>Hébergement et nom de domaine (1ère année incluse)</li>
+    <li>Maintenance et mises à jour (1 an inclus)</li>
+    <li>Formation complète (3 sessions × 2h)</li>
+    <li>Documentation technique et utilisateur complète</li>
+    <li>Support post-livraison (30 jours inclus)</li>
+    <li>Code source fourni avec accès Git complet</li>
+  </ul>
+
+  <h3>Prestations Non Incluses</h3>
+  <ul>
+    <li>Rédaction des contenus textuels (fournis par le client)</li>
+    <li>Production de contenus multimédias (photos, vidéos professionnelles)</li>
+    <li>Campagnes marketing et publicité en ligne</li>
+    <li>Hébergement et maintenance après la 1ère année</li>
+    <li>Modifications majeures hors scope après validation des maquettes</li>
+  </ul>
+
+  <h3>Responsabilités du Client</h3>
+  <ul>
+    <li>Fourniture des contenus (textes, images, logos) dans les délais convenus</li>
+    <li>Disponibilité pour les validations aux jalons clés (maquettes, V1, V2, V3)</li>
+    <li>Désignation d'un interlocuteur unique pour le suivi du projet</li>
+    <li>Paiement des acomptes selon l'échéancier défini</li>
+    <li>Validation des livrables sous 5 jours ouvrés maximum</li>
+  </ul>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">10</span></span></div></div>
+
+<!-- PAGE 10 — CONDITIONS GÉNÉRALES (2/2) -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h3>Garanties GIRA C&E</h3>
+  <ul>
+    <li><strong>Garantie maintenance 1 an :</strong> Corrections bugs, mises à jour sécurité, updates plugins, backups quotidiens pendant 1 an complet</li>
+    <li><strong>Garantie disponibilité :</strong> Uptime > 99,5% sur l'hébergement fourni</li>
+    <li><strong>Garantie sécurité :</strong> Respect des normes OWASP, HTTPS forcé, sauvegardes automatiques</li>
+    <li><strong>Garantie performance :</strong> PageSpeed > 85, temps de chargement < 3s</li>
+    <li><strong>Garantie accessibilité :</strong> Conformité WCAG 2.1 niveau AA</li>
+  </ul>
+
+  <h3>Conditions Particulières</h3>
+  <ul>
+    <li><strong>Propriété intellectuelle :</strong> Le code source devient propriété du client à paiement complet</li>
+    <li><strong>Confidentialité :</strong> Engagement de confidentialité totale sur les données du projet</li>
+    <li><strong>Délais :</strong> Les délais sont indicatifs et conditionnés par la fourniture des contenus</li>
+    <li><strong>Modifications :</strong> Toute modification hors scope fera l'objet d'un avenant</li>
+    <li><strong>Résiliation :</strong> En cas de résiliation, seules les prestations réalisées seront facturées</li>
+    <li><strong>Pénalités retard client :</strong> Tout retard > 10 jours ouvrés sur la fourniture de contenus ou validations entraîne une prolongation équivalente du planning sans pénalité pour GIRA C&E</li>
+  </ul>
+
+  <h3>Force Majeure</h3>
+  <p>GIRA C&E ne pourra être tenue responsable en cas d'inexécution ou de retard dans l'exécution de ses obligations résultant d'un cas de force majeure, notamment : catastrophes naturelles, guerres, émeutes, incendies, grèves, pannes d'infrastructures critiques (électricité, internet), actes gouvernementaux, ou toute autre circonstance indépendante de sa volonté. En cas de force majeure, les délais seront suspendus pendant la durée de l'événement.</p>
+
+  <h3>Juridiction et Litiges</h3>
+  <p>En cas de litige, les parties s'engagent à privilégier une résolution amiable. À défaut, les tribunaux compétents seront ceux du lieu du siège social de GIRA C&E.</p>
+
+  <div class="box box-warn">
+    <p style="margin-bottom:0;"><strong>Note importante :</strong> Ce devis est valable 60 jours. Passé ce délai, GIRA C&E se réserve le droit de réviser les tarifs en fonction de l'évolution du projet et des technologies.</p>
+  </div>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">11</span></span></div></div>
+
+<!-- PAGE 11 — SIGNATURES -->
+<div class="P"><div class="PH"><span><b>GIRA C&E</b> -- Consulting & Engineering</span><span>DEVIS-UNPC-001</span></div>
+<div class="PC">
+  <h2>Validation du Devis</h2>
+  <div class="srul"></div>
+
+  <div class="box box-success">
+    <p><strong>Montant Total HT :</strong> 89 175 DHS (Quatre-vingt-neuf mille cent soixante-quinze dirhams)</p>
+    <p><strong>TVA 20% :</strong> 17 829 DHS</p>
+    <p><strong>Montant Total TTC :</strong> 107 000 DHS (Cent sept mille dirhams)</p>
+    <p><strong>Validité :</strong> 60 jours à compter du 14 février 2026</p>
+    <p style="margin-bottom:0;"><strong>Délai de réalisation :</strong> 24 semaines (6 mois) à compter de la signature</p>
+  </div>
+
+  <h3>Pour Acceptation</h3>
+  <p>Merci de retourner ce devis signé et tamponné avec la mention "Bon pour accord" accompagné du premier acompte de 32 100 DHS.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10mm;margin-top:15mm;">
+    <div>
+      <p style="font-weight:700;color:#1E3A8A;margin-bottom:2mm;">Pour GIRA C&E</p>
+      <div style="border:1px solid #CBD5E1;border-radius:2mm;padding:20mm 5mm;background:#F8FAFC;min-height:50mm;">
+        <p style="font-size:9pt;color:#64748B;margin-bottom:15mm;">Nom et fonction :<br><span style="font-weight:600;color:#1E3A8A;">Chief Technical Officer (CTO)</span></p>
+        <p style="font-size:9pt;color:#64748B;margin-bottom:15mm;">Date :<br><span style="font-weight:600;color:#1E3A8A;">14 Février 2026</span></p>
+        <p style="font-size:9pt;color:#64748B;margin-bottom:0;">Signature et cachet :</p>
+      </div>
+    </div>
+    <div>
+      <p style="font-weight:700;color:#1E3A8A;margin-bottom:2mm;">Pour l'UNPC — Bon pour accord</p>
+      <div style="border:2px solid #3B82F6;border-radius:2mm;padding:20mm 5mm;background:#EEF2FF;min-height:50mm;">
+        <p style="font-size:9pt;color:#1E3A8A;margin-bottom:15mm;">Nom et fonction :</p>
+        <p style="font-size:9pt;color:#1E3A8A;margin-bottom:15mm;">Date :</p>
+        <p style="font-size:9pt;color:#1E3A8A;margin-bottom:0;">Signature et cachet :</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:auto;padding-top:8mm;border-top:1px solid #E2E8F0;text-align:center;">
+    <p style="font-size:9pt;color:#64748B;line-height:1.6;">
+      <strong>GIRA Consulting & Engineering</strong><br>
+      ICE : 003884751000054<br>
+      Email : contact@gira-ce.com | Tél : +212 632 334 468<br>
+      Devis N° GIRA/2026/DEV-UNPC-001 — Février 2026
+    </p>
+  </div>
+
+</div>
+<div class="PF"><span><b>GIRA C&E</b> -- ICE 003884751000054</span><span>Devis UNPC -- v1.0</span><span><span class="pn">12</span></span></div></div>
+
+</body>
+</html>

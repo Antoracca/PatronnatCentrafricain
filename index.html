@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patronnat Centrafricain — Site Privé</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0f;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #e8e8e8;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(0, 80, 180, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(120, 0, 200, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(0, 140, 100, 0.08) 0%, transparent 55%);
+      z-index: 0;
+      animation: bgPulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgPulse {
+      0%   { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      max-width: 860px;
+      width: 100%;
+    }
+
+    .lock-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #c0392b, #922b21);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 1.1rem;
+      border-radius: 50px;
+      margin-bottom: 1.6rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 18px rgba(192,57,43,0.5);
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.25;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(90deg, #ffffff, #a0c4ff, #ffffff);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #8899aa;
+      margin-bottom: 2.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .countdown-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #556677;
+      margin-bottom: 1rem;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.8rem;
+    }
+
+    .unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .digit {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.9rem 1.4rem;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      min-width: 90px;
+      color: #d0e8ff;
+      text-shadow: 0 0 20px rgba(100, 180, 255, 0.5);
+      transition: transform 0.15s ease;
+      line-height: 1;
+    }
+
+    .digit.tick {
+      transform: scale(1.06);
+    }
+
+    .sep {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      color: #334455;
+      margin-top: 0.5rem;
+      align-self: flex-start;
+      padding-top: 0.75rem;
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+
+    .unit-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #556677;
+      margin-top: 0.5rem;
+    }
+
+    .progress-wrapper {
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .progress-bar {
+      height: 3px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2980b9, #8e44ad);
+      border-radius: 99px;
+      transition: width 1s linear;
+    }
+
+    .finished-msg {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .finished-msg .check {
+      font-size: 4rem;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      0%   { transform: scale(0); }
+      80%  { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    .finished-msg p {
+      font-size: 1.3rem;
+      color: #2ecc71;
+      font-weight: 600;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 2rem;
+      font-size: 0.72rem;
+      color: #334455;
+      letter-spacing: 0.12em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="lock-icon">&#128274;</div>
+    <div class="badge">&#128683; Acc&#232;s Restreint</div>
+
+    <h1>Site Priv&#233;<br>En Cours de Construction</h1>
+    <p class="subtitle">Migration locale &bull; Ouverture imminente</p>
+
+    <p class="countdown-label">Migration disponible dans</p>
+
+    <div class="countdown" id="countdown">
+      <div class="unit">
+        <div class="digit" id="cd-hours">146</div>
+        <div class="unit-label">Heures</div>
+      </div>
+      <div class="sep">:</div>
+      <div class="unit">
+        <div class="digit" id="cd-minutes">46</div>
+        <div class="unit-label">Minutes</div>
+      </div>
+      <div class="sep">:</div>
+      <div class="unit">
+        <div class="digit" id="cd-seconds">17</div>
+        <div class="unit-label">Secondes</div>
+      </div>
+    </div>
+
+    <div class="progress-wrapper">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="finished-msg" id="finished-msg">
+      <div class="check">&#9989;</div>
+      <p>Migration termin&#233;e &mdash; Site bient&#244;t disponible !</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Patronnat Centrafricain &mdash; Tous droits r&#233;serv&#233;s
+  </footer>
+
+  <script>
+    /**
+     * countdown()
+     * Durée initiale : 146 h 46 m 17 s
+     * La date cible est persistée dans localStorage pour survivre
+     * aux rechargements de page.
+     */
+    function countdown() {
+      const STORAGE_KEY  = 'patronnat_migration_end';
+      const INITIAL_SECS = (146 * 3600) + (46 * 60) + 17; // 528 377 secondes
+
+      // Initialise ou récupère la date cible
+      let targetTs = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+      if (!targetTs || isNaN(targetTs)) {
+        targetTs = Date.now() + INITIAL_SECS * 1000;
+        localStorage.setItem(STORAGE_KEY, targetTs);
+      }
+
+      const elHours     = document.getElementById('cd-hours');
+      const elMinutes   = document.getElementById('cd-minutes');
+      const elSeconds   = document.getElementById('cd-seconds');
+      const elFill      = document.getElementById('progress-fill');
+      const elFinish    = document.getElementById('finished-msg');
+      const elCountdown = document.getElementById('countdown');
+
+      /** Formate un entier en 2 chiffres minimum */
+      function pad(n) {
+        return String(Math.max(0, Math.floor(n))).padStart(2, '0');
+      }
+
+      /** Animation flash sur un élément */
+      function tick(el) {
+        el.classList.remove('tick');
+        void el.offsetWidth; // force reflow
+        el.classList.add('tick');
+        setTimeout(() => el.classList.remove('tick'), 200);
+      }
+
+      let prevSec = null;
+
+      /** Appelée toutes les secondes pour mettre à jour l'affichage */
+      function update() {
+        const remaining = Math.max(0, targetTs - Date.now());
+        const totalSecs = Math.floor(remaining / 1000);
+
+        const h = Math.floor(totalSecs / 3600);
+        const m = Math.floor((totalSecs % 3600) / 60);
+        const s = totalSecs % 60;
+
+        elHours.textContent   = pad(h);
+        elMinutes.textContent = pad(m);
+        elSeconds.textContent = pad(s);
+
+        // Animation chaque seconde
+        if (prevSec !== s) {
+          tick(elSeconds);
+          if (prevSec !== null && s === 59) tick(elMinutes);
+          if (prevSec !== null && s === 59 && m === 59) tick(elHours);
+          prevSec = s;
+        }
+
+        // Barre de progression (temps écoulé / durée totale)
+        const elapsed = INITIAL_SECS - totalSecs;
+        const pct = Math.min(100, (elapsed / INITIAL_SECS) * 100);
+        elFill.style.width = pct + '%';
+
+        // Fin du décompte
+        if (remaining <= 0) {
+          clearInterval(timer);
+          elCountdown.style.display = 'none';
+          elFinish.style.display    = 'flex';
+        }
+      }
+
+      update(); // affichage immédiat au chargement
+      const timer = setInterval(update, 1000);
+    }
+
+    // Démarre le timer dès que la page est prête
+    document.addEventListener('DOMContentLoaded', countdown);
+  </script>
+
+</body>
+</html>
